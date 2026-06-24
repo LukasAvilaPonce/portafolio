@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lukas Ávila — Desarrollador</title>
+<meta name="description" content="Lukas Ávila — Desarrollador Java/Spring Boot y React. Estudiante de Ingeniería en Informática, Duoc UC. Disponible para proyectos freelance." />
+<link rel="icon" type="image/png" href="favicon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #0c0c0d;
+    --bg-soft: #151517;
+    --bg-card: #161618;
+    --line: #26262a;
+    --line-soft: #1d1d20;
+    --text: #f2f2f0;
+    --text-dim: #a0a0a3;
+    --text-faint: #6a6a6e;
+    --accent: #d6ff3f;
+    --accent-dim: #aacb2f;
+    --display: 'Space Grotesk', sans-serif;
+    --body: 'Inter', sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+    --maxw: 1080px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  ::selection { background: var(--accent); color: #000; }
+
+  a { color: inherit; text-decoration: none; }
+
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 28px; }
+
+  /* ---------- NAV ---------- */
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(12,12,13,0.72);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .nav-inner {
+    max-width: var(--maxw); margin: 0 auto; padding: 16px 28px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .brand { display: flex; align-items: center; gap: 12px; font-family: var(--display); font-weight: 600; letter-spacing: -0.01em; }
+  .brand img { width: 34px; height: 34px; }
+  .nav-links { display: flex; gap: 30px; font-size: 0.9rem; color: var(--text-dim); }
+  .nav-links a { transition: color 0.2s; }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-toggle { display: none; background: none; border: 0; color: var(--text); font-size: 1.5rem; cursor: pointer; }
+
+  /* ---------- HERO ---------- */
+  header { padding: 110px 0 90px; position: relative; }
+  .eyebrow {
+    font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.04em;
+    color: var(--accent-dim); margin-bottom: 28px; display: flex; align-items: center; gap: 10px;
+  }
+  .eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--accent-dim); display: inline-block; }
+  h1 {
+    font-family: var(--display); font-weight: 700;
+    font-size: clamp(2.6rem, 7vw, 5rem); line-height: 1.02;
+    letter-spacing: -0.03em; margin-bottom: 28px;
+  }
+  h1 .alt { color: var(--text-faint); }
+  .lead { font-size: clamp(1.05rem, 2vw, 1.3rem); color: var(--text-dim); max-width: 600px; margin-bottom: 40px; }
+  .lead strong { color: var(--text); font-weight: 600; }
+  .cta-row { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn {
+    font-family: var(--display); font-weight: 600; font-size: 0.95rem;
+    padding: 13px 26px; border-radius: 4px; transition: all 0.2s; cursor: pointer;
+    display: inline-flex; align-items: center; gap: 9px;
+  }
+  .btn-primary { background: var(--accent); color: #000; }
+  .btn-primary:hover { background: var(--accent-dim); transform: translateY(-2px); }
+  .btn-ghost { border: 1px solid var(--line); color: var(--text); }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+  .status {
+    margin-top: 56px; display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--mono); font-size: 0.82rem; color: var(--text-dim);
+  }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 0 var(--accent); animation: pulse 2.4s infinite; }
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(214,255,63,0.5); }
+    70% { box-shadow: 0 0 0 8px rgba(214,255,63,0); }
+    100% { box-shadow: 0 0 0 0 rgba(214,255,63,0); }
+  }
+
+  /* ---------- SECTION SHELL ---------- */
+  section { padding: 80px 0; border-top: 1px solid var(--line-soft); }
+  .sec-head { display: flex; align-items: baseline; gap: 16px; margin-bottom: 48px; }
+  .sec-num { font-family: var(--mono); font-size: 0.85rem; color: var(--accent-dim); }
+  .sec-title { font-family: var(--display); font-weight: 600; font-size: clamp(1.5rem, 3vw, 2.1rem); letter-spacing: -0.02em; }
+
+  /* ---------- PROJECTS ---------- */
+  .projects { display: grid; gap: 18px; }
+  .project {
+    background: var(--bg-card); border: 1px solid var(--line-soft);
+    border-radius: 8px; padding: 30px; transition: all 0.25s; position: relative; overflow: hidden;
+  }
+  .project::before {
+    content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+    background: var(--accent); transform: scaleY(0); transform-origin: top; transition: transform 0.25s;
+  }
+  .project:hover { border-color: var(--line); transform: translateX(4px); }
+  .project:hover::before { transform: scaleY(1); }
+  .proj-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 14px; }
+  .proj-name { font-family: var(--display); font-weight: 600; font-size: 1.35rem; letter-spacing: -0.01em; }
+  .proj-tag { font-family: var(--mono); font-size: 0.72rem; color: var(--text-faint); border: 1px solid var(--line); padding: 4px 10px; border-radius: 20px; white-space: nowrap; }
+  .proj-desc { color: var(--text-dim); font-size: 0.97rem; margin-bottom: 20px; max-width: 70ch; }
+  .proj-foot { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; }
+  .proj-stack { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip { font-family: var(--mono); font-size: 0.74rem; color: var(--text-dim); background: var(--bg-soft); border: 1px solid var(--line-soft); padding: 4px 10px; border-radius: 4px; }
+  .proj-links { display: flex; gap: 18px; font-size: 0.85rem; font-family: var(--display); font-weight: 500; }
+  .proj-links a { color: var(--text-dim); transition: color 0.2s; display: inline-flex; align-items: center; gap: 6px; }
+  .proj-links a:hover { color: var(--accent); }
+
+  /* ---------- STACK ---------- */
+  .stack-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+  .stack-col h3 { font-family: var(--mono); font-size: 0.8rem; color: var(--accent-dim); margin-bottom: 16px; letter-spacing: 0.03em; text-transform: uppercase; }
+  .stack-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .stack-col li { color: var(--text-dim); font-size: 0.97rem; display: flex; align-items: center; gap: 10px; }
+  .stack-col li::before { content: ''; width: 5px; height: 5px; background: var(--text-faint); border-radius: 50%; flex-shrink: 0; }
+
+  /* ---------- ABOUT ---------- */
+  .about-text { font-size: clamp(1.1rem, 2.2vw, 1.45rem); line-height: 1.55; max-width: 760px; font-family: var(--display); font-weight: 400; letter-spacing: -0.01em; }
+  .about-text .hi { color: var(--accent); }
+  .about-meta { margin-top: 36px; display: flex; flex-wrap: wrap; gap: 36px; }
+  .meta-item .k { font-family: var(--mono); font-size: 0.74rem; color: var(--text-faint); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
+  .meta-item .v { font-size: 0.98rem; color: var(--text); }
+
+  /* ---------- CONTACT ---------- */
+  .contact-card { text-align: center; padding: 20px 0; }
+  .contact-card h2 { font-family: var(--display); font-weight: 700; font-size: clamp(2rem, 5vw, 3.4rem); letter-spacing: -0.03em; margin-bottom: 22px; }
+  .contact-card h2 a { border-bottom: 2px solid transparent; transition: border-color 0.2s; }
+  .contact-card h2 a:hover { border-color: var(--accent); }
+  .contact-links { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; margin-top: 36px; }
+
+  /* ---------- FOOTER ---------- */
+  footer { padding: 40px 0; border-top: 1px solid var(--line-soft); }
+  .foot-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; }
+  .foot-inner p { font-family: var(--mono); font-size: 0.8rem; color: var(--text-faint); }
+  .foot-inner .brand { font-size: 0.95rem; }
+
+  /* ---------- REVEAL ANIM ---------- */
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+    .reveal { opacity: 1; transform: none; }
+    html { scroll-behavior: auto; }
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 720px) {
+    .nav-links { display: none; }
+    .nav-links.open { display: flex; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; gap: 0; background: var(--bg-soft); border-bottom: 1px solid var(--line); padding: 8px 28px 20px; }
+    .nav-links.open a { padding: 12px 0; border-bottom: 1px solid var(--line-soft); }
+    .nav-toggle { display: block; }
+    header { padding: 70px 0 60px; }
+    .proj-top { flex-direction: column; }
+    section { padding: 60px 0; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#top" class="brand"><img src="logo_LA.svg" alt="Logo Lukas Ávila" /> Lukas Ávila</a>
+    <button class="nav-toggle" aria-label="Abrir menú" onclick="document.getElementById('navlinks').classList.toggle('open')">≡</button>
+    <div class="nav-links" id="navlinks">
+      <a href="#proyectos">Proyectos</a>
+      <a href="#stack">Stack</a>
+      <a href="#sobre-mi">Sobre mí</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+  </div>
+</nav>
+
+<div id="top"></div>
+
+<header>
+  <div class="wrap">
+    <p class="eyebrow reveal">Desarrollador · Renca, Santiago</p>
+    <h1 class="reveal">Construyo software<br />de principio<br /><span class="alt">a fin.</span></h1>
+    <p class="lead reveal">Desarrollador enfocado en <strong>backend con Java y Spring Boot</strong> y <strong>frontend con React</strong>. Estudiante de Ingeniería en Informática en Duoc UC, con experiencia construyendo desde microservicios hasta videojuegos.</p>
+    <div class="cta-row reveal">
+      <a href="#proyectos" class="btn btn-primary">Ver proyectos →</a>
+      <a href="CV_Lukas_Avila_2026.pdf" download class="btn btn-ghost">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Descargar CV
+      </a>
+      <a href="https://github.com/LukasAvilaPonce" target="_blank" rel="noopener" class="btn btn-ghost">GitHub</a>
+    </div>
+    <div class="status reveal"><span class="dot"></span> Disponible para proyectos freelance</div>
+  </div>
+</header>
+
+<section id="proyectos">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">01</span>
+      <h2 class="sec-title">Proyectos</h2>
+    </div>
+    <div class="projects">
+
+      <article class="project reveal">
+        <div class="proj-top">
+          <h3 class="proj-name">SIVEBO</h3>
+          <span class="proj-tag">Microservicios</span>
+        </div>
+        <p class="proj-desc">Sistema distribuido de 14 microservicios en Spring Boot para gestión de envíos y bodega. Incluye descubrimiento de servicios con Eureka, API Gateway, comunicación entre servicios con WebClient, y orquestación completa con Docker Compose. Responsable de los módulos de finanzas, embalaje y paquetes.</p>
+        <div class="proj-foot">
+          <div class="proj-stack">
+            <span class="chip">Java</span><span class="chip">Spring Boot</span><span class="chip">Spring Cloud</span><span class="chip">MariaDB</span><span class="chip">Docker</span>
+          </div>
+          <div class="proj-links">
+            <a href="https://github.com/orgs/SIVEBO/repositories" target="_blank" rel="noopener">Código ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="project reveal">
+        <div class="proj-top">
+          <h3 class="proj-name">On Tour</h3>
+          <span class="proj-tag">Web App</span>
+        </div>
+        <p class="proj-desc">Prototipo de plataforma web para una agencia de viajes, con acceso diferenciado por roles (Apoderado, Ejecutivo, Gerencia), dashboard con estadísticas animadas, tema oscuro y despliegue automático mediante GitHub Actions.</p>
+        <div class="proj-foot">
+          <div class="proj-stack">
+            <span class="chip">React</span><span class="chip">Vite</span><span class="chip">JavaScript</span><span class="chip">CSS</span>
+          </div>
+          <div class="proj-links">
+            <a href="https://lukitasnashe.github.io/ontour-prototipo/" target="_blank" rel="noopener">Demo ↗</a>
+            <a href="https://github.com/LukasAvilaPonce/On_Tour_Prototipo" target="_blank" rel="noopener">Código ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="project reveal">
+        <div class="proj-top">
+          <h3 class="proj-name">LastHarvest</h3>
+          <span class="proj-tag">Videojuego</span>
+        </div>
+        <p class="proj-desc">Juego de supervivencia por oleadas en 3D que mezcla tower defense y acción. El jugador planta aliados con habilidades distintas para defender la Planta Madre de hordas de zombies, con IA enemiga basada en distancia y priorización de objetivos.</p>
+        <div class="proj-foot">
+          <div class="proj-stack">
+            <span class="chip">Godot 4</span><span class="chip">GDScript</span><span class="chip">Mixamo</span>
+          </div>
+          <div class="proj-links">
+            <a href="https://github.com/LukasAvilaPonce/LastHarvest" target="_blank" rel="noopener">Código ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="project reveal">
+        <div class="proj-top">
+          <h3 class="proj-name">Biblioteca Spring</h3>
+          <span class="proj-tag">Backend</span>
+        </div>
+        <p class="proj-desc">Sistema de gestión de biblioteca desarrollado con Java y Spring Boot, aplicando el patrón en capas (controller, service, repository) y persistencia con JPA.</p>
+        <div class="proj-foot">
+          <div class="proj-stack">
+            <span class="chip">Java</span><span class="chip">Spring Boot</span><span class="chip">JPA</span>
+          </div>
+          <div class="proj-links">
+            <a href="https://github.com/LukasAvilaPonce/biblioteca-spring" target="_blank" rel="noopener">Código ↗</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section id="stack">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">02</span>
+      <h2 class="sec-title">Stack</h2>
+    </div>
+    <div class="stack-grid">
+      <div class="stack-col reveal">
+        <h3>Backend</h3>
+        <ul>
+          <li>Java</li><li>Spring Boot</li><li>Spring Cloud</li><li>Microservicios</li><li>MariaDB / SQL</li>
+        </ul>
+      </div>
+      <div class="stack-col reveal">
+        <h3>Frontend</h3>
+        <ul>
+          <li>React</li><li>Vite</li><li>JavaScript</li><li>HTML / CSS</li>
+        </ul>
+      </div>
+      <div class="stack-col reveal">
+        <h3>Otros</h3>
+        <ul>
+          <li>Python</li><li>Oracle SQL</li><li>Godot 4 / GDScript</li><li>Git / GitHub</li><li>Docker</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="sobre-mi">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">03</span>
+      <h2 class="sec-title">Sobre mí</h2>
+    </div>
+    <p class="about-text reveal"><span class="hi">Estudiante de Ingeniería en Informática</span> en Duoc UC. Antes de programar trabajé en infraestructura de redes y en atención al cliente, así que entiendo el lado técnico y el del usuario. Hoy me muevo cómodo entre el backend y el frontend, y aprendo rápido por mi cuenta: he construido desde sistemas de microservicios hasta videojuegos.</p>
+    <div class="about-meta reveal">
+      <div class="meta-item"><div class="k">Ubicación</div><div class="v">Renca, Santiago · Chile</div></div>
+      <div class="meta-item"><div class="k">Estudios</div><div class="v">Ing. en Informática · Duoc UC</div></div>
+      <div class="meta-item"><div class="k">Disponibilidad</div><div class="v">Freelance / Remoto</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="contacto">
+  <div class="wrap">
+    <div class="contact-card reveal">
+      <span class="sec-num">04 — Contacto</span>
+      <h2 style="margin-top:18px;">Hablemos de tu<br />proyecto.</h2>
+      <p class="lead" style="margin: 0 auto;">¿Necesitas una web, un backend o una mano con código? Escríbeme.</p>
+      <div class="contact-links">
+        <a href="https://wa.me/56996571578?text=Hola%20Lukas%2C%20vi%20tu%20portafolio%20y%20me%20gustar%C3%ADa%20conversar%20sobre%20un%20proyecto." target="_blank" rel="noopener" class="btn btn-primary">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.15h-.01c-1.52 0-3.01-.41-4.31-1.18l-.31-.18-3.2.84.85-3.12-.2-.32a8.23 8.23 0 0 1-1.26-4.36c0-4.54 3.7-8.23 8.25-8.23 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.7 8.51-8.24 8.51zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.12-.16.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.42-.14-.01-.31-.01-.48-.01-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.28z"/></svg>
+          WhatsApp
+        </a>
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=lukas.avila2002@gmail.com&su=Contacto%20desde%20tu%20portafolio" target="_blank" rel="noopener" class="btn btn-ghost">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 12.713 1.05 5.213A2 2 0 0 1 3 4h18a2 2 0 0 1 1.95 1.213L12 12.713zM12 14.4 1 7v11a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V7l-11 7.4z"/></svg>
+          Enviar correo
+        </a>
+        <a href="https://github.com/LukasAvilaPonce" target="_blank" rel="noopener" class="btn btn-ghost">GitHub</a>
+        <a href="CV_Lukas_Avila_2026.pdf" download class="btn btn-ghost">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Descargar CV
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-inner">
+    <a href="#top" class="brand"><img src="logo_LA.svg" alt="" style="width:24px;height:24px;" /> Lukas Ávila</a>
+    <p>© 2026 — Hecho con HTML & CSS</p>
+  </div>
+</footer>
+
+<script>
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach((el, i) => {
+    el.style.transitionDelay = (Math.min(i, 4) * 0.06) + 's';
+    io.observe(el);
+  });
+
+  // Close mobile menu on link click
+  document.querySelectorAll('#navlinks a').forEach(a => {
+    a.addEventListener('click', () => document.getElementById('navlinks').classList.remove('open'));
+  });
+</script>
+
+</body>
+</html>
